@@ -10,7 +10,7 @@ const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
 
   const fetchTours = async () => {
     try { // get tour data from API
-      const response = await fetch('https://course-api.com/react-tours-project'); 
+      const response = await fetch('https://api.allorigins.win/raw?url=https://course-api.com/react-tours-project'); 
       // API call
       const data = await response.json();
       setTours(data); // update tour list
@@ -21,7 +21,7 @@ const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
     } finally {
       setLoading(false); // done loading
     }
-  }; // ✅ this was missing!
+  }; 
 
   useEffect(() => {
     fetchTours(); // run once when page loads

@@ -1,7 +1,7 @@
 import React, { useState } from "react"; 
 import Gallery from "./components/Gallery"; // tour card list
 import DestinationSelector from "./components/DestinationSelector"; // dropdown filter
-import './styles/styles.css'; // makes custom styles
+import './App.css'; // makes custom styles
 
 function App() {
   const [tours, setTours] = useState([]);
