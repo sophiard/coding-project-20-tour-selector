@@ -8,7 +8,6 @@ const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
   const [error, setError] = useState(false); 
   // error flag
 
-  
   const fetchTours = async () => {
     try { // get tour data from API
       const response = await fetch('https://course-api.com/react-tours-project'); 
@@ -22,5 +21,53 @@ const Gallery = ({ tours, setTours, onRemove, selectedDestination }) => {
     } finally {
       setLoading(false); // done loading
     }
-  };
+  }; // ✅ this was missing!
+
+  useEffect(() => {
+    fetchTours(); // run once when page loads
+  }, []); // no deps = run only on mount
+
+  // filter list based on dropdown
+  const filteredTours = selectedDestination === 'All'
+    ? tours
+    : tours.filter((tour) => tour.name === selectedDestination);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <h2>Loading...</h2> {/* show while fetching */}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error">
+        <h2>Something went wrong...</h2> {/* fetch failed */}
+      </div>
+    );
+  }
+
+  if (tours.length === 0) {
+    return (
+      <div className="no-tours">
+        <h2>No tours available</h2> {/* empty list */}
+        <button className="btn" onClick={fetchTours}>Refresh</button> {/* reload */}
+      </div>
+    );
+  }
+
+  return (
+    <section className="tours">
+      <h2>Our Tours</h2> {/* title */}
+      <div className="tours-list">
+        {filteredTours.map((tour) => (
+          <TourCard key={tour.id} {...tour} onRemove={onRemove} /> 
+          // tour cards
+        ))}
+      </div>
+    </section>
+  );
 };
+
+export default Gallery;
