@@ -1,3 +1,6 @@
+Hi! This is Coding Project 20.
+I originally started a different version, but it wasn’t working properly. I ran into some issues with my App.jsx file and couldn’t figure them out, so I decided to start fresh. Hopefully, this version works as expected!
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
